@@ -1,0 +1,6 @@
+import json
+import os
+
+arr = os.listdir("./videos")
+for dir in arr:
+   subdir = os.listdir("./videos/"+dir)
