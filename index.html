@@ -1,94 +1,17 @@
 <html>
-<head>
-<style>
-* {
-  box-sizing: border-box /* apply box model ta all elements */
-}
-body {
-  margin: 0; /* reset default margin for body */
-}
 
-#videos {
-  width: 100%;
-  font-size: 2vw; /* fix inline-block gap */
-  text-align: center; /* align content to center */
-}
-figure {
-  display: inline-block;
-  width: 33.3%; /* make images to fit 3 per row */
-  padding: 5%; /* demo */
-  margin: 0 /* reset default margin for figure */
-}
-img {
-  max-width: 100% /* width won't have more than 100% of parent width */
-}
-
-</style>
-</head>
 <body>
-<h1>HOMEMADE VIDEOS</h1>
 
-<div class="thumbnails" id="videos"></div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uBv5Mh5B5wk?si=JtvfHW8NDVhRaTpO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Holy 💩! This rioter took a direct shot to the 🎾🎾. FAFO 🤣🤣🤣🤣<a href="https://t.co/zAAMPZbE4b">pic.twitter.com/zAAMPZbE4b</a></p>&mdash; Shannon Hill (@ShannonMFHill) <a href="https://twitter.com/ShannonMFHill/status/1932804454191149473?ref_src=twsrc%5Etfw">June 11, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">This is how karma worked against a French troublemaker who decided to set fire to a police car. 🚨🚨🚨 <a href="https://twitter.com/hashtag/Karma?src=hash&amp;ref_src=twsrc%5Etfw">#Karma</a> <a href="https://t.co/HJPxIvCCkB">pic.twitter.com/HJPxIvCCkB</a></p>&mdash; Crazy Fu*k around find out videos (@dosedailyvideo) <a href="https://twitter.com/dosedailyvideo/status/1659757904319373312?ref_src=twsrc%5Etfw">May 20, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Southport rioter gets instant karma 🫣 <a href="https://t.co/Y08rRhvxCn">pic.twitter.com/Y08rRhvxCn</a></p>&mdash; The London Economic (@LondonEconomic) <a href="https://twitter.com/LondonEconomic/status/1818541793320776084?ref_src=twsrc%5Etfw">July 31, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Classic<br><br>Rioter vs Charma (Charbroiled Karma) <a href="https://t.co/iLGmhTnyLA">pic.twitter.com/iLGmhTnyLA</a></p>&mdash; Steve Inman (@SteveInmanUIC) <a href="https://twitter.com/SteveInmanUIC/status/1744020315506635128?ref_src=twsrc%5Etfw">January 7, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
-
-<script>
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       // Typical action to be performed when the document is ready:
-       //document.getElementById("videos").innerHTML = xhttp.responseText;
-       var jsondata = JSON.parse(xhttp.responseText);
-       var total = jsondata.items.length;
-       var x = 0;
-       var videoDiv = document.getElementById("videos");
-       for (var x=0; x<jsondata.items.length; x++){ 
-              var thumbnailpath = jsondata.items[x].thumbnailpath;
-              var videopath = jsondata.items[x].videopath;
-              var duration = jsondata.items[x].duration;
-              var ts = jsondata.items[x].created;
-              // convert unix timestamp to milliseconds
-              var ts_ms = ts * 1000;
-
-              // initialize new Date object
-              var date_ob = new Date(ts_ms);
-
-              // year as 4 digits (YYYY)
-              var year = date_ob.getFullYear();
-
-              // month as 2 digits (MM)
-              var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-
-              // date as 2 digits (DD)
-              var date = ("0" + date_ob.getDate()).slice(-2);
-              var created = month + "/" + date + "/" + year;
-              var hyperlink = document.createElement("a");
-              hyperlink.setAttribute("href", videopath);
-              var figure = document.createElement("figure");
-              var img = document.createElement("img");
-              img.src = thumbnailpath;
-              figure.appendChild(img);
-              var caption = document.createElement("figcaption");
-              var minutes = Math.round(duration/60);
-              caption.innerHTML = minutes + " minutes, " + created;
-              if(minutes<1){
-                   caption.innerHTML = duration + " seconds, " + created;
-
-              }
-              if(minutes==1){
-                   caption.innerHTML = minutes + " minute, " + created;
-              }
-              figure.appendChild(caption);
-              hyperlink.appendChild(figure);
-              videoDiv.appendChild(hyperlink);
-}
-           
-
-    }
-};
-xhttp.open("GET", "videos.json", true);
-xhttp.send();
-
-</script>
 
 </html>
